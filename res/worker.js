@@ -3,18 +3,19 @@ this.importScripts("../script.js");
 
 let progressCall = 0;
 /**
- * Register script progress between 0 and 1
- * @param {Number} ratio
+ * Register script progress
+ * @param {Number} ratio - Progress between 0 and 1
+ * @param {Boolean} [forced=false] - Force the progression send
  */
-function progression (ratio) {
-    if (++progressCall % 1e5 === 0) {
+function progression (ratio, forced) {
+    if (++progressCall % 1e5 === 0 || forced) {
         this.postMessage(new Message(Message.types.progress, ratio));
         progressCall = 0;
     }
 }
 /**
  * Send a message to UI
- * @param {String} message
+ * @param {String} message - Any message
  */
 function send (message) {
     this.postMessage(new Message(Message.types.output, message));

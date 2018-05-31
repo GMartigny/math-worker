@@ -5,41 +5,19 @@
  */
 function inputs () {
     return {
-        ["Number of characters"]: 4,
+        // Fill with desired inputs
+        // ex: ["Your key"]: 42,
     };
 }
 
 /**
  * Do the work
- * @param {Object} parameters
+ * @param {Object} parameters - Selected value on inputs
  */
 function work (parameters) {
-    // Example of random string draw (replace this with your code)
+    // Fill this with your code
 
-    function randomStr (length) {
-        // Draw random -> transform it alphaDecimal [1-9a-z] -> cut last n chars
-        return Math.random().toString(36).substr(-length);
-    }
-
-    const nbChar = parameters["Number of characters"];
-    const theoreticalPossibilities = 36 ** nbChar;
-    send(`Theoretical: ${theoreticalPossibilities}`);
-    const nbLoop = 5 * theoreticalPossibilities;
-    const results = {};
-    for (let i = 0; i < nbLoop; ++i) {
-        const draw = randomStr(nbChar);
-        if (results[draw]) {
-            ++results[draw];
-        }
-        else {
-            results[draw] = 1;
-        }
-        progression(i / nbLoop);
-    }
-
-    const len = Object.keys(results).length;
-    send(`Result: ${len}`);
-    send(`Used: ${(len / theoreticalPossibilities).toFixed(2) * 100}%`);
-
-    // end example
+    // Use parameters["Your key"] to get the value chosen in the input
+    // Use send("message") to send any message to display
+    // Use progression(0.5) to inform on the script progress
 }
