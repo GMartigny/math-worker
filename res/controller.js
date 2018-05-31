@@ -1,3 +1,4 @@
+// This shit is ugly because not going to be maintained further
 {
     let html = "";
     const fields = window.inputs ? window.inputs() : {};
@@ -41,10 +42,15 @@
     const controlNode = document.getElementById("control");
     const outputNode = document.getElementById("output");
 
+    function progress(value) {
+        const formatted = value.toFixed(1);
+        progressBar.setAttribute("value", formatted);
+        progressBar.dataset.progress = formatted + "%";
+    }
     function start () {
         controlNode.classList.add("is-danger");
         controlNode.innerText = "Stop";
-        progressBar.setAttribute("value", "0");
+        progress(0);
         progressBar.classList.add("shown");
     }
     function stop () {
@@ -56,6 +62,26 @@
         const item = document.createElement("li");
         item.innerText = message;
         outputNode.appendChild(item);
+    }
+    function formatTime (value) {
+        const units = {
+            s: 1000,
+            mn: 60,
+            hr: 60,
+            day: 24,
+        };
+        let lastUnit = "ms";
+        let divider = 1;
+        for (let key in units) {
+            if (value / divider > units[key]) {
+                lastUnit = key;
+                divider *= units[key];
+            }
+            else {
+                break;
+            }
+        }
+        return (value / divider).toFixed(1) + lastUnit;
     }
     class WorkerProxy {
         constructor () {
@@ -69,14 +95,14 @@
 
                 switch (message.data.type) {
                     case Message.types.progress:
-                        progressBar.setAttribute("value", message.data.value.toFixed(2) * 100);
+                        progress(message.data.value * 100);
                         break;
                     case Message.types.output:
                         text = message.data.value;
                         break;
                     case Message.types.done:
-                        progressBar.setAttribute("value", 100);
-                        text = "-- Done --";
+                        progress(100);
+                        text = `-- Done in ${formatTime(message.data.value)} --`;
                         stop();
                         break;
                 }

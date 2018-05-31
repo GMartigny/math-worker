@@ -23,8 +23,9 @@ function send (message) {
 this.onmessage = (message) => {
     switch (message.data.type) {
         case Message.types.start:
+            const time = performance.now();
             work(message.data.value);
-            this.postMessage(new Message(Message.types.done));
+            this.postMessage(new Message(Message.types.done, performance.now() - time));
             break;
     }
 };

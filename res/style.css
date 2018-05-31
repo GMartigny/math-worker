@@ -3,10 +3,18 @@ form {
 }
 
 #progressbar {
+    position: relative;
     margin-left: 1em;
     opacity: 0;
     transition: opacity .2s linear;
 }
 #progressbar.shown {
     opacity: 1;
+}
+#progressbar::before {
+    content: attr(data-progress);
+    position: absolute;
+    left: 1em;
+    font-size: .7rem;
+    color: #fff;
 }
