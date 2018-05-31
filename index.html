@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Maths worker</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
+    <link rel="stylesheet" href="./res/style.css">
+</head>
+<body>
+    <main class="section columns">
+        <div class="column">
+            <div class="panel">
+                <h2 class="panel-heading">Inputs</h2>
+                <div class="panel-block">
+                    <form class="" id="input"></form>
+                </div>
+                <div class="panel-block">
+                    <button class="button" id="control">Start</button>
+                    <progress class="progress is-info is-small" max="100" id="progressbar"></progress>
+                </div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="panel">
+                <h2 class="panel-heading">Outputs</h2>
+                <div class="panel-block">
+                    <ul id="output"></ul>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="./script.js"></script>
+    <script src="./res/worker-protocol.js"></script>
+    <script src="./res/controller.js"></script>
+</body>
+</html>

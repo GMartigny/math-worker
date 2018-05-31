@@ -1,0 +1,12 @@
+form {
+    width: 100%;
+}
+
+#progressbar {
+    margin-left: 1em;
+    opacity: 0;
+    transition: opacity .2s linear;
+}
+#progressbar.shown {
+    opacity: 1;
+}
