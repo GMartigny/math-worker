@@ -30,6 +30,7 @@ this.onmessage = (message) => {
             }
             catch (e) {
                 console.error(e);
+                send(e.message);
             }
             this.postMessage(new Message(Message.types.done, performance.now() - time));
             break;
